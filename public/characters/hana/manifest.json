@@ -1,0 +1,39 @@
+{
+  "animations" : {
+    "cheer" : {
+      "file" : "cheer.png",
+      "fps" : 4.4400000000000004,
+      "frames" : 6,
+      "loop" : false
+    },
+    "idle" : {
+      "file" : "idle.png",
+      "fps" : 4.8499999999999996,
+      "frames" : 16,
+      "loop" : true
+    },
+    "sleep" : {
+      "file" : "sleep.png",
+      "fps" : 0.73999999999999999,
+      "frames" : 4,
+      "loop" : true
+    },
+    "walk" : {
+      "file" : "walk.png",
+      "fps" : 12,
+      "frames" : 8,
+      "loop" : true
+    },
+    "wave" : {
+      "file" : "wave.png",
+      "fps" : 4,
+      "frames" : 6,
+      "loop" : true
+    }
+  },
+  "baseline" : 486,
+  "characterHeight" : 430,
+  "frameHeight" : 512,
+  "frameWidth" : 512,
+  "name" : "Hana"
+}

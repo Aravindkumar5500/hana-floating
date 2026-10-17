@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffeef4"/>
+      <stop offset="100%" stop-color="#eedaf5"/>
+    </linearGradient>
+    <linearGradient id="hairGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#59415f"/>
+      <stop offset="100%" stop-color="#3d2c45"/>
+    </linearGradient>
+    <linearGradient id="dressGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f2a9c2"/>
+      <stop offset="100%" stop-color="#e889a7"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#59415f" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Circular background with subtle border -->
+  <circle cx="256" cy="256" r="236" fill="url(#bgGrad)" stroke="#f2abc5" stroke-width="8"/>
+
+  <!-- Back hair -->
+  <path d="M 160 170 C 130 240, 120 340, 160 380 C 180 400, 332 400, 352 380 C 392 340, 382 240, 352 170 Z" fill="url(#hairGrad)" filter="url(#shadow)"/>
+
+  <!-- Body / Dress -->
+  <path d="M 180 340 C 180 310, 210 295, 256 295 C 302 295, 332 310, 332 340 L 342 410 C 342 430, 170 430, 170 410 Z" fill="url(#dressGrad)" stroke="#583b4b" stroke-width="6"/>
+
+  <!-- Collar & Ribbon -->
+  <polygon points="230,295 282,295 256,330" fill="#fff0f5" stroke="#583b4b" stroke-width="4"/>
+  <circle cx="256" cy="330" r="10" fill="#f2abc5" stroke="#583b4b" stroke-width="4"/>
+
+  <!-- Ears -->
+  <ellipse cx="166" cy="235" rx="14" ry="22" fill="#ffd9c9" stroke="#583b4b" stroke-width="6"/>
+  <ellipse cx="346" cy="235" rx="14" ry="22" fill="#ffd9c9" stroke="#583b4b" stroke-width="6"/>
+
+  <!-- Face -->
+  <path d="M 176 185 C 176 130, 336 130, 336 185 C 336 270, 310 295, 256 295 C 202 295, 176 270, 176 185 Z" fill="#ffd9c9" stroke="#583b4b" stroke-width="6"/>
+
+  <!-- Hair Cap & Bangs -->
+  <path d="M 172 185 C 170 120, 342 120, 340 185 C 320 170, 305 180, 290 205 C 275 185, 260 180, 245 205 C 230 180, 205 175, 172 185 Z" fill="url(#hairGrad)" stroke="#583b4b" stroke-width="6"/>
+  
+  <!-- Left & Right Bang curls -->
+  <path d="M 172 185 C 160 215, 170 250, 185 245 C 190 220, 185 195, 172 185 Z" fill="url(#hairGrad)"/>
+  <path d="M 340 185 C 352 215, 342 250, 327 245 C 322 220, 327 195, 340 185 Z" fill="url(#hairGrad)"/>
+
+  <!-- Flower hairpin (Hana 🌸) -->
+  <g transform="translate(195, 155) scale(0.9)">
+    <circle cx="0" cy="-14" r="10" fill="#ffbccc"/>
+    <circle cx="14" cy="-4" r="10" fill="#ffbccc"/>
+    <circle cx="9" cy="12" r="10" fill="#ffbccc"/>
+    <circle cx="-9" cy="12" r="10" fill="#ffbccc"/>
+    <circle cx="-14" cy="-4" r="10" fill="#ffbccc"/>
+    <circle cx="0" cy="0" r="7" fill="#fff7b2"/>
+  </g>
+
+  <!-- Cheerful Eyes -->
+  <ellipse cx="218" cy="225" rx="14" ry="20" fill="#4b344e"/>
+  <ellipse cx="294" cy="225" rx="14" ry="20" fill="#4b344e"/>
+  <!-- Catchlights -->
+  <circle cx="214" cy="217" r="5" fill="#ffffff"/>
+  <circle cx="223" cy="231" r="2.5" fill="#ffffff"/>
+  <circle cx="290" cy="217" r="5" fill="#ffffff"/>
+  <circle cx="299" cy="231" r="2.5" fill="#ffffff"/>
+
+  <!-- Blush -->
+  <ellipse cx="205" cy="250" rx="14" ry="7" fill="#ef7e97" opacity="0.6"/>
+  <ellipse cx="307" cy="250" rx="14" ry="7" fill="#ef7e97" opacity="0.6"/>
+
+  <!-- Smiling mouth -->
+  <path d="M 247 252 Q 256 264 265 252" fill="none" stroke="#a45168" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Sparkles -->
+  <path d="M 360 120 Q 360 135 375 135 Q 360 135 360 150 Q 360 135 345 135 Q 360 135 360 120 Z" fill="#f9c8d8"/>
+  <path d="M 130 280 Q 130 290 140 290 Q 130 290 130 300 Q 130 290 120 290 Q 130 290 130 280 Z" fill="#f9c8d8"/>
+</svg>

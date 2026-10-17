@@ -1,0 +1,22 @@
+[package]
+name = "stark-anime-companion"
+version = "0.2.0"
+description = "A floating anime desktop companion for macOS"
+authors = ["you"]
+edition = "2021"
+[lib]
+name = "stark_anime_companion_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+[dependencies]
+tauri = { version = "2", features = ["tray-icon"] }
+tauri-plugin-notification = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# macOS-native window configuration (see src/macos.rs). objc2 is already in the
+# dependency tree via tauri/tao/wry, so this pins the same major version.
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2 = "0.6"
+objc2-core-foundation = "0.3"

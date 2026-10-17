@@ -1,0 +1,275 @@
+/* Hana — transparent floating companion.
+   The character is drawn on a canvas by the rig in src/rig/, so there is no character
+   markup here any more. Everything below is chrome: the bubble, the hover handle and
+   the two panels. Nothing gets an opaque background except the panels themselves. */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #fff;
+  /* The window is click-through except over the character; never show a text cursor. */
+  user-select: none;
+  cursor: default;
+}
+
+button,
+select {
+  font: inherit;
+}
+
+.overlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  overflow: visible;
+}
+
+/* The character. Fills the window; she stands at the bottom edge. */
+.hana-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  background: transparent;
+}
+
+/* Hover-revealed controls strip with frosted capsule backdrop so underlying windows never bleed through. */
+.drag-handle {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  height: 28px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  padding: 2px 10px;
+  color: #f0e6f2;
+  font-size: 11px;
+  background: #251e2ceb;
+  border: 1px solid #ffffff1a;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(16px);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.overlay:hover .drag-handle,
+.drag-handle.panel-active {
+  opacity: 1;
+}
+
+.drag-handle span {
+  margin-right: auto;
+  font-weight: 700;
+  padding-left: 2px;
+  letter-spacing: 0.3px;
+}
+
+.drag-handle i {
+  font-style: normal;
+  color: #f2abc5;
+}
+
+.mini {
+  width: 22px;
+  height: 22px;
+  border: 1px solid #ffffff24;
+  border-radius: 7px;
+  background: #392f44;
+  color: #fff;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.mini:hover {
+  background: #4a3e59;
+  border-color: #ffffff44;
+}
+
+/* Speech bubble, anchored above her head and inside the window so it never clips. */
+.bubble {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  bottom: 212px;
+  transform: translateX(-50%);
+  max-width: 232px;
+  text-align: center;
+  line-height: 1.35;
+  background: #fff1f5;
+  color: #6a3c55;
+  padding: 7px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 0 6px 20px #0004;
+  animation: bubble-in 0.22s ease-out;
+}
+
+.bubble:after {
+  content: "";
+  position: absolute;
+  left: calc(50% - 5px);
+  bottom: -5px;
+  width: 10px;
+  height: 10px;
+  background: #fff1f5;
+  transform: rotate(45deg);
+}
+
+.tiny-status {
+  position: absolute;
+  z-index: 4;
+  bottom: 4px;
+  right: 5px;
+  background: #282132e8;
+  border: 1px solid #ffffff22;
+  border-radius: 10px;
+  padding: 4px 7px;
+  font-size: 9px;
+  color: #d4c3d8;
+}
+
+/* Panels sit ABOVE the character: the window grows upward (its bottom edge stays on the
+   Dock line), so these never cover her. */
+.quick-controls,
+.settings {
+  position: absolute;
+  z-index: 5;
+  left: 6px;
+  right: 6px;
+  top: 40px;
+  padding: 10px;
+  border: 1px solid #ffffff20;
+  border-radius: 14px;
+  background: #292331f2;
+  box-shadow: 0 8px 30px #0005;
+  backdrop-filter: blur(16px);
+  font-size: 11px;
+}
+
+.quick-controls button {
+  border: 0;
+  border-radius: 8px;
+  background: #f2abc5;
+  color: #573347;
+  padding: 7px 9px;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.quick-controls .secondary {
+  background: #ffffff12;
+  color: #eee1ee;
+  border: 1px solid #ffffff18;
+}
+
+.timers {
+  display: flex;
+  justify-content: space-between;
+  color: #e9dce9;
+  margin-bottom: 8px;
+}
+
+.focus-line,
+.quick-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.quick-foot {
+  margin-top: 8px;
+  gap: 4px;
+}
+
+.quick-foot button {
+  flex: 1 1 auto;
+  padding: 6px 4px;
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.reminder-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.reminder-actions button {
+  flex: 1 1 auto;
+}
+
+.settings-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.settings label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 0;
+  gap: 10px;
+}
+
+.settings select {
+  max-width: 105px;
+  background: #40364b;
+  color: #fff;
+  border: 1px solid #ffffff24;
+  border-radius: 7px;
+  padding: 5px;
+}
+
+.settings .toggle input {
+  accent-color: #e9a8c2;
+}
+
+.settings p {
+  color: #a99bae;
+  font-size: 9px;
+  margin: 10px 0 0;
+}
+
+/* Screen-reader-only state announcement; also handy when debugging the state machine. */
+.sr-state {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+@keyframes bubble-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}

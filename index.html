@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#00000000" />
+    <title>Hana Companion</title>
+    <script>
+      // The webview console is invisible from the terminal, so forward uncaught errors
+      // into the Tauri log. Cheap, and the only way to see a frontend crash in dev.
+      (function () {
+        var send = function (m) {
+          try {
+            window.__TAURI_INTERNALS__.invoke("hana_log", { msg: String(m) });
+          } catch (e) {}
+        };
+        window.addEventListener("error", function (e) {
+          send("error: " + (e.message || e.error) + " @ " + (e.filename || "?") + ":" + e.lineno);
+        });
+        window.addEventListener("unhandledrejection", function (e) {
+          send("unhandledrejection: " + ((e.reason && (e.reason.stack || e.reason.message)) || e.reason));
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

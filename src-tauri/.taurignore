@@ -1,0 +1,5 @@
+# The dev watcher must not watch files that the build itself rewrites, or every build
+# retriggers the next one in an endless rebuild loop.
+Info.plist
+icons/
+gen/
