@@ -466,7 +466,6 @@ export function sleep(t: number, look?: CharacterLook): Pose {
 
 /** Held by the scruff and dragged: limbs dangle and swing with the motion. */
 export function dangle(t: number, swing: number, look?: CharacterLook): Pose {
-  const { mo } = perf(look);
   const { mo, quad } = perf(look);
   const p = neutralPose();
 
